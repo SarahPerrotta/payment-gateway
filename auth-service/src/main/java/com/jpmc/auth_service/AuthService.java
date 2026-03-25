@@ -10,6 +10,9 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public String register(String username, String password) {
@@ -29,7 +32,7 @@ public class AuthService {
             return "User not found";
         }
         if (passwordEncoder.matches(password, user.getPassword())) {
-            return "Login successful";
+            return jwtUtil.generateToken(username);
         }
         return "Invalid password";
     }

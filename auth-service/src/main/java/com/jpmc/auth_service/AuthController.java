@@ -22,9 +22,9 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody User user) {
         String result = authService.login(user.getUsername(), user.getPassword());
-        if (result.equals("Login successful")) {
-            return ResponseEntity.ok(result);
+        if (result.equals("User not found") || result.equals("Invalid password")) {
+            return ResponseEntity.status(401).body(result);
         }
-        return ResponseEntity.status(401).body(result);
+        return ResponseEntity.ok(result);
     }
 }

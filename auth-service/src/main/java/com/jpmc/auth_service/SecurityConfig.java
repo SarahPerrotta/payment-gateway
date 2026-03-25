@@ -15,14 +15,14 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/register", "/login").permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/register", "/login", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
             .headers(headers -> headers
                 .frameOptions(frame -> frame.disable())
             )
-            .httpBasic(basic -> basic.disable());
+            .httpBasic(basic -> basic.disable())
+            .formLogin(form -> form.disable());
         return http.build();
     }
 }
