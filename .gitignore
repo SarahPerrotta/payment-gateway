@@ -1,0 +1,6 @@
+.vscode/
+.metals/
+target/
+*.class
+*.jar
+.DS_Store
