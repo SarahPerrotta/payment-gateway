@@ -8,14 +8,23 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
+    private AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            return ResponseEntity.badRequest().body("Username already exists");
+        String result = authService.register(user.getUsername(), user.getPassword());
+        if (result.equals("Username already exists")) {
+            return ResponseEntity.badRequest().body(result);
         }
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody User user) {
+        String result = authService.login(user.getUsername(), user.getPassword());
+        if (result.equals("Login successful")) {
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.status(401).body(result);
     }
 }
