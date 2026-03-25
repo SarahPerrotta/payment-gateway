@@ -11,7 +11,18 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Autowired
+    private FxRateClient fxRateClient;
+
     public Transaction createTransaction(Transaction transaction) {
+        if (!transaction.getCurrency().equalsIgnoreCase("GBP")) {
+            Double convertedAmount = fxRateClient.convertToGBP(
+                transaction.getAmount(), 
+                transaction.getCurrency()
+            );
+            transaction.setAmount(convertedAmount);
+            transaction.setCurrency("GBP");
+        }
         transaction.setStatus("PENDING");
         return transactionRepository.save(transaction);
     }
