@@ -32,4 +32,11 @@ public class SecurityConfig {
                     UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
+    @Bean
+    public org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
+        return username -> {
+            throw new org.springframework.security.core.userdetails.UsernameNotFoundException("Use JWT auth");
+        };
+    }
 }
