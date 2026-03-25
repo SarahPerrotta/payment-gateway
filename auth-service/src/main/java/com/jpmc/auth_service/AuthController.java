@@ -27,4 +27,9 @@ public class AuthController {
         }
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/protected")
+    public ResponseEntity<String> protectedEndpoint() {
+        return ResponseEntity.ok("You accessed a protected endpoint!");
+    }
 }
