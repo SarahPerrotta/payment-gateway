@@ -1,3 +1,7 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.watcherExclude": {
+        "**/target": true
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
 }
