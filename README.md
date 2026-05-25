@@ -102,6 +102,21 @@ mvn spring-boot:run
 ```bash
 cd fraud-service
 mvn spring-boot:run
+
+## Live Deployment
+
+**All three services are deployed and live on Railway**
+
+| Service | URL |
+|---|---|
+| Auth Service | https://payment-gateway-production-a3ee.up.railway.app |
+| Transaction Service | https://transaction-service-production-b8b5.up.railway.app |
+| Fraud Service | https://fraud-service-production-d0fe.up.railway.app |
+
+### Live API Documentation (Swagger)
+- Auth Service: https://payment-gateway-production-a3ee.up.railway.app/swagger-ui/index.html
+- Transaction Service: https://transaction-service-production-b8b5.up.railway.app/swagger-ui/index.html
+- Fraud Service: https://fraud-service-production-d0fe.up.railway.app/swagger-ui/index.html
 ```
 
 ---
