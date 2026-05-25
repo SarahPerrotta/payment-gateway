@@ -1,6 +1,7 @@
 package com.jpmc.transaction_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,7 +18,8 @@ public class TransactionService {
     private FxRateClient fxRateClient;
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String FRAUD_SERVICE_URL = "http://localhost:8083/fraud/check";
+    @Value("${fraud.service.url:http://fraud-service:8083/fraud/check}")
+    private String FRAUD_SERVICE_URL;
 
     public Transaction createTransaction(Transaction transaction) {
         // Step 1: Convert currency if not GBP
