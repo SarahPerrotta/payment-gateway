@@ -1,4 +1,4 @@
-package com.jpmc.auth_service;
+package com.jpmc.transaction_service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
